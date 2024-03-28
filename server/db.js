@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { boolean, Schema } = require('zod');
 
 mongoose.connect("mongodb://localhost:27017/todo");
 
@@ -14,8 +15,11 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
-    
+    },
+    todos: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Todo'
+    }]
 })
 const todoSchema = mongoose.Schema({
     userId: {
@@ -30,6 +34,10 @@ const todoSchema = mongoose.Schema({
     description: {
         type: String,
         required: true
+    },
+    completed: {
+        type: Boolean,
+        default: false
     }
     
 })
