@@ -13,6 +13,9 @@ const todoSchema= mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "User"
     }]
-})
+},
+{timestamps: true}
+)
 
-module.exports=mongoose.model("Todo",todoSchema);
+const Todo=mongoose.model("Todo",todoSchema);
+module.exports=Todo;
